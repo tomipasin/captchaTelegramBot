@@ -1,0 +1,21 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "author": "Thiago M. Medeiros",
+  "description": "I created this simple bot to manage my groups on Telegram.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon captchabot.js",
+    "start": "node captchabot.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-telegram-bot-api": "^0.51.0",
+    "telegraf": "3.37.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
