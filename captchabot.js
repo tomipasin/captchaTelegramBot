@@ -145,6 +145,7 @@ const App = {
         }
       }
     },
+    
 
     async onMemberEnter(ctx) {
       console.log(ctx)
