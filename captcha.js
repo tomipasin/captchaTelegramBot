@@ -1,3 +1,5 @@
+//a função getRandomCaptcha no captchabot.js vai retornar um número que corresponderá
+//a um dos itens deste array. Cada um tem um objeto com duas chaves: code e image.
 module.exports = [
   { code: '9A53', image: '7n.png' },
   { code: 't2Kp', image: '8n.png' },
