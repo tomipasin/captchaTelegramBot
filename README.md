@@ -29,7 +29,7 @@ Crie um arquivo .env com o seu token.
 Exemplo:
 
 ```sh
-TOKEN=***********aqui coloque o token do seu bot criado com o BotFather no Telegram***********
+TOKEN=[aqui coloque o token do seu bot criado com o BotFather no Telegram]
 ```
 
 
@@ -39,5 +39,7 @@ Logo em seguida use:
 ```sh
 npm start
 ```
+
+
 
 
