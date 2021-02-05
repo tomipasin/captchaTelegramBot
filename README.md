@@ -4,6 +4,9 @@ Um bot de CAPTCHA para Node.JS usando o framework Telegraf.js
 
 <img src="https://tomipasin.com/captcha/git.png" style="width: 680px"/>
 
+### Como usar?
+Adicione @porteirotugabot ao seu grupo e dê a ele permissões de administrador.
+
 ### Como funciona?
 Usando o framework Telegraf iniciamos um bot capaz de interagir em um grupo
 sempre que um novo usuário entrar, mandando uma imagem e uma mensagem.
@@ -15,5 +18,26 @@ Roda atualmente em uma VPS com Node.JS e consome pouquíssimos recursos.
 
 ### O código:
 Projeto baseado no código original de Thiago Medeiros (https://github.com/thiagommedeiros/telegram-bot).
+
+### Como testar?
+Clone este repositório e use o comando:
+```sh
+npm install
+```
+
+Crie um arquivo .env com o seu token. 
+Exemplo:
+
+```sh
+TOKEN=***********aqui coloque o token do seu bot criado com o BotFather no Telegram***********
+```
+
+
+Este comando instalará as dependências que constam em package.json.
+Logo em seguida use:
+
+```sh
+npm start
+```
 
 
