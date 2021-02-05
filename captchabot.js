@@ -159,7 +159,7 @@ const App = {
       if (username) userString += ` (@${username})`
 
       const captcha = this.getRandomCaptcha() || captcha[0]
-      const msg_welcome = await ctx.replyWithPhoto({ source: `./images/${captcha.image}` }, { caption: `Olá ${userString}!\n\nSeja bem-vindo(a) ao grupo Morar em Portugal 🇵🇹!\n\nATENÇÃO: Para garantir que você não é um robô, envie uma mensagem com as letras e números que aparecem na imagem acima dentro de 3 minutos.\nLetras maiúsculas e minúsculas fazem diferença. Você tem três chances. \nSe a mensagem não for enviada você será removido(a) do grupo automaticamente.` })
+      const msg_welcome = await ctx.replyWithPhoto({ source: `./images/${captcha.image}` }, { caption: `Olá ${userString}!\n\nSeja bem-vindo(a) ao grupo!\n\nATENÇÃO: Para garantir que você não é um robô, envie uma mensagem com as letras e números que aparecem na imagem acima dentro de 3 minutos.\nLetras maiúsculas e minúsculas fazem diferença. Você tem três chances. \nSe a mensagem não for enviada você será removido(a) do grupo automaticamente.` })
       const messagesToDelete = [msg_welcome.message_id, captcha.image]
 
       console.log('######### captcha', captcha)
