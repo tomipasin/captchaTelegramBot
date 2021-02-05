@@ -15,17 +15,23 @@ app.listen(app.get('port'), () =>
   console.log('App is running, server is listening on port:', app.get('port')))
 
 
-// bot
+// início do bot
 const bot = new Telegraf(process.env.TOKEN)
 
+//criação do App responsável pelas funcionalidades do bot - um objeto com 
+//vários ítens.
 const App = {
+  //aqui o captcha que o usuário vai digitar. Ele é inicializado como
+  //um array vazio.
   usersInCaptcha: [],
 
+  //A função init chama os binds e também o launch do bot.
   init() {
     this.bindEvents()
     bot.launch()
   },
 
+  //binde events faz os bindings(!) necessários para o funcionamento.
   bindEvents() {
     bot.command('startAutoMsgs', this.startAutoMessages)
     bot.command('stopAutoMsgs', this.stopAutoMessages)
@@ -33,7 +39,9 @@ const App = {
     bot.on('message', this.Events.onNewMessage.bind(this))
   },
 
+  //aqui o disparo de mensagens automáticas inicia com intervalos de 1, 3 e 5 dias.
   startAutoMessages(ctx) {
+
     ctx.reply('Nunca deixe de sonhar 🇵🇹')
 
     this.mmp = setInterval(() => {
@@ -49,6 +57,7 @@ const App = {
     }, 432000000) // 5 day
   },
 
+  
   stopAutoMessages(ctx) {
     console.log(ctx)
     ctx.reply('Portugal é um país maravilhoso, vcs não acham?! 🇵🇹')
@@ -150,14 +159,8 @@ const App = {
       if (username) userString += ` (@${username})`
 
       const captcha = this.getRandomCaptcha() || captcha[0]
-
-      const msg_captcha = await ctx.replyWithPhoto({ source: `./images/${captcha.image}` })
-      const msg_welcome = await ctx.reply(`
-      Olá ${userString}!\n\nSeja bem-vindo(a) ao grupo Morar em Portugal 🇵🇹!\n\nATENÇÃO: Para garantir que você não é um robô, envie uma mensagem com as letras e números que aparecem na imagem acima dentro de 3 minutos.\nLetras maiúsculas e minúsculas fazem diferença. Você tem três chances. \nSe a mensagem não for enviada você será removido(a) do grupo automaticamente.`)
-
-
-
-      const messagesToDelete = [msg_welcome.message_id]
+      const msg_welcome = await ctx.replyWithPhoto({ source: `./images/${captcha.image}` }, { caption: `Olá ${userString}!\n\nSeja bem-vindo(a) ao grupo Morar em Portugal 🇵🇹!\n\nATENÇÃO: Para garantir que você não é um robô, envie uma mensagem com as letras e números que aparecem na imagem acima dentro de 3 minutos.\nLetras maiúsculas e minúsculas fazem diferença. Você tem três chances. \nSe a mensagem não for enviada você será removido(a) do grupo automaticamente.` })
+      const messagesToDelete = [msg_welcome.message_id, captcha.image]
 
       console.log('######### captcha', captcha)
 
@@ -179,9 +182,11 @@ const App = {
           message: `🚨 ${userString} não digitou o código e foi removido(a).`
         })
       }, 180000)
+
     }
   }
 }
+
 
 App.init()
 
