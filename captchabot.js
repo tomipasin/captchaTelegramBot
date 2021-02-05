@@ -146,7 +146,6 @@ const App = {
       }
     },
     
-
     async onMemberEnter(ctx) {
       console.log(ctx)
       const { message } = ctx
