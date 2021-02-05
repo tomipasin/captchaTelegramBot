@@ -2,7 +2,7 @@
 
 Um bot de CAPTCHA para Node.JS usando o framework Telegraf.js
 
-[[imagem]]
+<img src="https://tomipasin.com/captcha/git.png" style="width: 680px"/>
 
 ### Como funciona?
 Usando o framework Telegraf iniciamos um bot capaz de interagir em um grupo
