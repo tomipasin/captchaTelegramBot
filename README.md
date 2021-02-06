@@ -2,7 +2,9 @@
 
 Um bot de CAPTCHA para Node.JS usando o framework Telegraf.js
 
-<img src="https://tomipasin.com/captcha/git.png" style="width: 680px"/>
+<img src="https://tomipasin.com/captcha/Exemplo1.png" style="width: 680px"/>
+</hr>
+<img src="https://tomipasin.com/captcha/Exemplo2.png" style="width: 680px"/>
 
 ### Como usar?
 Adicione @porteirotugabot ao seu grupo e dê a ele permissões de administrador.
