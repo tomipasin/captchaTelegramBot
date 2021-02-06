@@ -45,7 +45,7 @@ Logo em seguida use:
 npm start
 ```
 
-
+Qualquer dúvida me chame por aqui ou pelo Telegram em @tomipasin. 
 
 
 
