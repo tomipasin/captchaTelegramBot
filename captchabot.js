@@ -18,8 +18,8 @@ const bot = new Telegraf(process.env.TOKEN)
 //criação do CaptchaApp responsável pelas funcionalidades do bot - um objeto com 
 //vários ítens.
 const CaptchaApp = {
-  //aqui o captcha que o usuário vai digitar. Ele é inicializado como
-  //um array vazio.
+  //aqui a primeiro item do nosso objeto, onde quase tudo sobre o usuário
+  //ficará armazenado durante o processo.Ele é inicializado como um array vazio.
   usersInCaptcha: [],
   
 
@@ -29,7 +29,7 @@ const CaptchaApp = {
     bot.launch()
   },
 
-  //binde events faz os bindings(!) necessários para o funcionamento.
+  //bind events faz os bindings(!) necessários para o funcionamento.
   bindEvents() {
     bot.command('startAutoMsgs', this.startAutoMessages)
     bot.command('stopAutoMsgs', this.stopAutoMessages)
@@ -37,30 +37,31 @@ const CaptchaApp = {
     bot.on('message', this.Events.onNewMessage.bind(this))
   },
 
-  //aqui uma função para o disparo de mensagens automáticas inicia com intervalos de 1, 3 e 5 dias.
-  //Este bot foi originalmente feito para um grupo que tem Portugal como tema.
+  //aqui uma função que tem um bind feito para o comando /startAutoMsgs. 
+  //Ela serve para o disparo de mensagens automáticas. Neste caso deixei três: uma imediata ao enviar o 
+  //comando, uma 20 segundos depois e a última mais 20 segundos depois. Isso é cíclico, ou seja, as mensagens automáticas
+  //serão enviadas A CADA intervalo de tempo definido. Eu usei de exemplo um intervalo curtíssimo mas
+  //você pode usar horas, dias, meses ou o que desejar.
   startAutoMessages(ctx) {
+    //quando a função é iniciada ela responde àquele contexto com uma mensagem.
+    ctx.reply(`Ao comando de /startAutoMsgs eu te mostro uma mensagem de retorno como essa. \nDentro de 20 segundos uma nova mensagem automática será enviada.`)
 
-    ctx.reply('Nunca deixe de sonhar 🇵🇹')
+    //aqui, com um setInterval de 20 segundos vai a 2º mensagem automática, chamada m1.
+    this.m1 = setInterval(() => {
+      ctx.reply(`Eu sou a mensagem que aparece depois de 20 segundos. \nDentro de mais 20 segundos uma outra mensagem aparecerá.`)
+    }, 20000)
 
-    // this.mmp = setInterval(() => {
-    //   ctx.reply(`Vcs conhecem o Método Morar em Portugal? 🇵🇹\n\nLá tem todas informações que você precisa para imigrar com segurança!\n\nClique neste link para saber mais: http://bit.ly/388mjha`)
-    // }, 86400000) // primeiro dia
-
-    // this.m1 = setInterval(() => {
-    //   ctx.reply(`Você tem que acordar todos os dias e dizer para si mesmo(a):\n\n"Eu posso, eu consigo, eu vou morar em Portugal! 🇵🇹\n\nContinue acreditando!`)
-    // }, 259200000) // terceiro dia
-
-    // this.m2 = setInterval(() => {
-    //   ctx.reply(`O poder está dentro de você, na sua mente, pois se acreditar que consegue não haverá obstáculo capaz de impedir o seu sucesso! Força! 🇵🇹`)
-    // }, 432000000) // quinto dia
+    //Por fim aqui, com um setInterval de mais 20 segundos vai a 3º mensagem automática, chamada m2.
+    this.m2 = setInterval(() => {
+      ctx.reply(`Eu sou a segunda e última mensagem de exemplo programada. \nIsso ficará sendo exibido de forma cíclica então para que as mensagens parem por favor use o comando\n/stopAutoMsgs`)
+    }, 40000) 
   },
 
-  //e aqui uma função para parar as eventuais mensagens automáticas.
+  //e aqui uma função que vai responder ao comando de /stopAutoMsgs (que já teve seu bind feito para essa função) 
+  //e que, como o nome diz, para as eventuais mensagens automáticas.
   stopAutoMessages(ctx) {
-   ctx.reply('Portugal é um país maravilhoso, vcs não acham?! 🇵🇹')
-
-    clearInterval(this.mmp)
+    //a resposta do comando é uma mensagem e um clear interval em m1 e m2.
+   ctx.reply('As mensagens automáticas foram paradas.')
     clearInterval(this.m1)
     clearInterval(this.m2)
   },
@@ -68,9 +69,9 @@ const CaptchaApp = {
   //aqui escolhemos randômicamente um dos captchas que criamos.
   getRandomCaptcha() {
     //essa const escolhe um número aleatório levando em conta a quantidade de captchas que
-    //criamos no arquivo captcha.js
+    //criamos no arquivo captcha.js. 
     const randomNumber = Math.floor(Math.random() * captcha.length) + 0
-    //aqui essa função retorna o índice 'x' do captcha. 
+    //aqui essa função retorna o índice 'x' do captcha. Cada objeto do captcha tem um código e uma imagem.
     return captcha[randomNumber]
   },
 
