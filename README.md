@@ -7,7 +7,7 @@ Um bot de CAPTCHA para Node.JS usando o framework Telegraf.js
 <img src="https://tomipasin.com/captcha/Exemplo2.png" style="width: 680px"/>
 
 ### Como usar?
-Adicione @porteirotugabot ao seu grupo e dê a ele permissões de administrador.
+Adicione <strong>@porteirotugabot</strong> ao seu grupo e dê a ele permissões de administrador.
 
 ### Como funciona?
 Usando o framework Telegraf iniciamos um bot capaz de interagir em um grupo
