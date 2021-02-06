@@ -1,26 +1,23 @@
 require('dotenv').config()
-
+//Importamos além do express o Telegraf.js que é o framework que utilizaremos para
+//criação desse bot.
 const express = require('express')
 const Telegraf = require('telegraf')
 const captcha = require('./captcha.js')
 
-// only to run in heroku
+//nosso servidor vai escutar a porta 3002. 
 const app = express()
-
 app.set('port', (process.env.PORT || 3002))
-
-app.get('/', (request, response) => response.send('App is running'))
-
 app.listen(app.get('port'), () =>
-  console.log('App is running, server is listening on port:', app.get('port')))
+console.log('Aplicativo rodando e servidor escutando a porta ', app.get('port')))
 
 
 // início do bot
 const bot = new Telegraf(process.env.TOKEN)
 
-//criação do App responsável pelas funcionalidades do bot - um objeto com 
+//criação do CaptchaApp responsável pelas funcionalidades do bot - um objeto com 
 //vários ítens.
-const App = {
+const CaptchaApp = {
   //aqui o captcha que o usuário vai digitar. Ele é inicializado como
   //um array vazio.
   usersInCaptcha: [],
@@ -230,5 +227,5 @@ const App = {
 }
 
 
-App.init()
+CaptchaApp.init()
 
