@@ -24,6 +24,8 @@ Clone este repositório e use o comando:
 ```sh
 npm install
 ```
+Vá no Telegram e busque pelo @BotFather para criar o seu bot e obter o seu token.
+Mais detalhes sobre o processo de criação do bot você encontra nesse link: <a>https://core.telegram.org/bots#3-how-do-i-create-a-bot</a>
 
 Crie um arquivo .env com o seu token. 
 Exemplo:
