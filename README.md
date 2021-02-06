@@ -45,6 +45,9 @@ Logo em seguida use:
 npm start
 ```
 
+Este bot está rodando tranquilamente em um servidor VPS Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz x1 com 450MiB de memória e sistema Ubuntu server 18.04 LTS. Seu consumo médio de memória é 45MiB.
+
+
 Qualquer dúvida me chame por aqui ou pelo Telegram em @tomipasin. 
 
 
