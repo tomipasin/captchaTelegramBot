@@ -165,7 +165,7 @@ const CaptchaApp = {
       //isso ajuda bastante pois ao detectar que um novo membro é bot imediatamente é excluído do grupo.
       //se por acaso você quiser permitir que seu grupo tenha participantes não-humanos comente estas linhas.
       //Se quiser permitir somente alguns bots use o código acima.
-      if(message.new_chat_member.is_bot === true){
+      if(message.new_chat_member.is_bot){
         console.log('É bot. Vou remover...')
         ctx.kickChatMember(message.new_chat_member.id)
         return

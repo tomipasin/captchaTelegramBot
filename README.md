@@ -45,6 +45,18 @@ Logo em seguida use:
 npm start
 ```
 
+Este bot está programado para permitir somente novos membros que não sejam bots, excluíndo os que forem bot imediatamente. Assim o captcha será exibido somente para usuários que tenham no seu contexto "is_bot: false".
+
+```sh
+ if(message.new_chat_member.is_bot){
+        console.log('É bot. Vou remover...')
+        ctx.kickChatMember(message.new_chat_member.id)
+        return
+      }
+```
+
+
+
 Este bot está rodando tranquilamente em um servidor VPS Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz x1 com 450MiB de memória e sistema Ubuntu server 18.04 LTS. Seu consumo médio de memória é 45MiB.
 
 
