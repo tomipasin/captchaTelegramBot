@@ -83,7 +83,7 @@ const CaptchaApp = {
       const { message } = ctx
       const { from, text } = message
       //deixei esse console.log aqui para você poder ver que campos estão disponíveis nesse contexto.
-      console.log(message)
+      //console.log(message)
       //a cada msg recebida eu logo primeiro e último nomes, username, id, se é bot e o texto da mensagem.
       console.log(`Nova mensagem de ${message.from.first_name} ${message.from.last_name} (username: ${message.from.username} id: ${message.from.id}, É bot: ${message.from.is_bot}): ${text}`)
 
@@ -155,10 +155,21 @@ const CaptchaApp = {
       const { new_chat_participant } = message
       const { id, first_name, last_name, username } = new_chat_participant
       
-      //IMPORTANTE!!! é preciso verificar se o username que entrou não é o username do nosso bot.
+      //IMPORTANTE!!! é preciso verificar se o username que entrou não é o username do nosso bot ou algum bot
+      //que desejemos permitir no nosso grupo.
       //aqui deve ser inserido o username do seu bot. Caso a função perceba que é o mesmo usuário
-      //ela para a execução.
+      //ela para a execução. Use quantas forem necessárias sempre colocando lá o username do bot que deseja permitir no grupo.
       if (username === 'porteirotugabot') return
+      
+      //Aqui a remoção de um novo membro bot é feita automaticamente, sem mandar captcha para ele. 
+      //isso ajuda bastante pois ao detectar que um novo membro é bot imediatamente é excluído do grupo.
+      //se por acaso você quiser permitir que seu grupo tenha participantes não-humanos comente estas linhas.
+      //Se quiser permitir somente alguns bots use o código acima.
+      if(message.new_chat_member.is_bot === true){
+        console.log('É bot. Vou remover...')
+        ctx.kickChatMember(message.new_chat_member.id)
+        return
+      }
 
       //também criamos uma user String para o primeiro nome do usuario.
       let userString = `${first_name}`
@@ -166,7 +177,8 @@ const CaptchaApp = {
       if (last_name) userString += ` ${last_name}`
       //e se houver username adicionamos também.
       if (username) userString += ` (@${username})`
-
+      
+      
       //também criamos uma const para o captcha que será o resultado da nossa função getRandomCaptcha ou
       //caso aconteça algo será o 1º captcha do nosso array.
       const captcha = this.getRandomCaptcha() || captcha[0]
